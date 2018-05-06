@@ -15,7 +15,8 @@ public class Banking {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-     
+        MainWindow main = new MainWindow();
+        main.setVisible(true);
     }
     
 }
