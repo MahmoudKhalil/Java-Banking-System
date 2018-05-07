@@ -39,6 +39,8 @@ public class GuiTest {
             MainWindow w = new MainWindow(0);
             w.setVisible(true);
            
+            popup("Beginning testing",2);
+            popup("Let's attempt to add 5 users first",2);
             for (int i = 0; i < 5; i++) {
                 s.click("screenshots/addclientmain.png");
 
@@ -47,9 +49,13 @@ public class GuiTest {
                 s.type(Key.TAB + balances[i]);
              
                 s.click("screenshots/savebutton.PNG");
+                popup(5-(i+1)+" left",1);
             }
+            
+            
             /**Withdraw**
              ***********/
+             popup("Testing Withdraw",2);
             s.click("screenshots/withdrawmain.png");
             Thread.sleep(2000);
             
@@ -58,7 +64,7 @@ public class GuiTest {
             
               /**Deposit**
              ***********/
-             
+             popup("Testing Deposit",2);
         
            
             s.click("screenshots/depositmain.png");
