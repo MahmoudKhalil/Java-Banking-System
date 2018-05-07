@@ -74,8 +74,8 @@ public class Client {
         }
     }
     
-    public void transferTo(double amount, Client anotherClient) throws WithdrawAmountException{
-        this.withdraw(amount);
-        anotherClient.deposit(amount);
+    public static void transferTo(Client client1, Client client2, double amount) throws WithdrawAmountException{
+        client1.withdraw(amount);
+        client2.deposit(amount);
     }
 }

@@ -76,7 +76,7 @@ public class ClientTester {
             c.withdraw(15);
             assertEquals(185, c.getBalance(), 0.0001);
         } catch(WithdrawAmountException ex) {
-            fail("Function should throw an exception in this case");
+            fail("Function shouldn't throw an exception in this case");
         }
         
         try {
@@ -86,6 +86,27 @@ public class ClientTester {
             assertTrue(true);
         }
         
+    }
+    
+    @Test
+    public void transferToTest() {
+        Client c1 = new Client("Mahmoud", 200.0, new Date(17, 8, 1997), "0000", "male");
+        Client c2 = new Client("Mohamed", 200.0, new Date(17, 8, 1996), "0001", "male");
+        
+        try {
+            Client.transferTo(c1, c2, 300);
+            fail("Method should fail since that the amount to be withdrawn is more than the balance");
+        } catch(WithdrawAmountException ex) {
+            assertTrue(true);
+        }
+        
+        try{
+            Client.transferTo(c1, c2, 30);
+            assertEquals(170, c1.getBalance(), 0.0001);
+            assertEquals(230, c2.getBalance(), 0.0001);
+        } catch(WithdrawAmountException ex) {
+            fail("Function shouldn't throw an exception");
+        }
     }
     
     @Test
