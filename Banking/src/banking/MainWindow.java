@@ -23,7 +23,7 @@ public class MainWindow extends javax.swing.JFrame {
        
         clientsChoice.setModel(new DefaultComboBoxModel(clients.toArray()));
         if(clientsChoice.getSelectedItem()!=null)
-        clientInfoTxt.setText(clientsChoice.getSelectedItem().Print());
+        clientInfoTxt.setText( ((Client)clientsChoice.getSelectedItem()).Print());
        
    
     }
@@ -44,9 +44,12 @@ public class MainWindow extends javax.swing.JFrame {
         withdrawBtn = new javax.swing.JButton();
         transferToBtn = new javax.swing.JButton();
         addClientBtn = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        clientInfoTxt.setEditable(false);
+        clientInfoTxt.setFont(new java.awt.Font("DialogInput", 0, 18)); // NOI18N
         jScrollPane1.setViewportView(clientInfoTxt);
 
         clientsChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client 1", "Client 2", "Client 3", "Client 4" }));
@@ -61,18 +64,38 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        depositBtn.setBackground(new java.awt.Color(204, 255, 204));
+        depositBtn.setForeground(new java.awt.Color(0, 153, 0));
         depositBtn.setText("Deposit");
+        depositBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositBtnActionPerformed(evt);
+            }
+        });
 
+        withdrawBtn.setBackground(new java.awt.Color(255, 204, 204));
+        withdrawBtn.setForeground(new java.awt.Color(255, 0, 0));
         withdrawBtn.setText("Withdraw");
+        withdrawBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                withdrawBtnActionPerformed(evt);
+            }
+        });
 
+        transferToBtn.setBackground(new java.awt.Color(153, 255, 255));
+        transferToBtn.setForeground(new java.awt.Color(51, 51, 255));
         transferToBtn.setText("Transfer to");
 
+        addClientBtn.setBackground(new java.awt.Color(204, 255, 204));
+        addClientBtn.setForeground(new java.awt.Color(0, 153, 0));
         addClientBtn.setText("Add Client");
         addClientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addClientBtnActionPerformed(evt);
             }
         });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,31 +105,35 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(clientsChoice, 0, 313, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(transferToBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(depositBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(withdrawBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(addClientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(clientsChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(transferToBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(withdrawBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(depositBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addClientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(depositBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(withdrawBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(transferToBtn)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clientsChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addClientBtn))
+                    .addComponent(transferToBtn)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(withdrawBtn)
+                    .addComponent(depositBtn)
+                    .addComponent(addClientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -125,11 +152,27 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_clientsChoiceItemStateChanged
 
     private void addClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClientBtnActionPerformed
-       
+
         CreateClient cc = new CreateClient(this,clients);
+        cc.setLocation(this.getLocation().x+this.getWidth(),this.getLocation().y);
+       
         cc.setVisible(true);
-    
+
     }//GEN-LAST:event_addClientBtnActionPerformed
+
+    private void withdrawBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawBtnActionPerformed
+         Withdraw w = new Withdraw(this,clients,clientsChoice.getSelectedIndex());
+        w.setLocation(this.getLocation().x+this.getWidth(),this.getLocation().y);
+       
+        w.setVisible(true);
+    }//GEN-LAST:event_withdrawBtnActionPerformed
+
+    private void depositBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositBtnActionPerformed
+  Deposit d = new Deposit(this,clients,clientsChoice.getSelectedIndex());
+        d.setLocation(this.getLocation().x+this.getWidth(),this.getLocation().y);
+       
+        d.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_depositBtnActionPerformed
    
     /**
      * @param args the command line arguments
@@ -172,6 +215,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextPane clientInfoTxt;
     private javax.swing.JComboBox<String> clientsChoice;
     private javax.swing.JButton depositBtn;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton transferToBtn;
     private javax.swing.JButton withdrawBtn;

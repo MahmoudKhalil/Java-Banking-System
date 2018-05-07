@@ -40,6 +40,7 @@ public class CreateClient extends javax.swing.JFrame {
     private void initComponents() {
 
         genderGroup = new javax.swing.ButtonGroup();
+        jButton1 = new javax.swing.JButton();
         nameTextBox = new javax.swing.JTextField();
         phoneTextBox = new javax.swing.JTextField();
         dayTextBox = new javax.swing.JTextField();
@@ -56,7 +57,15 @@ public class CreateClient extends javax.swing.JFrame {
         maleRadio = new javax.swing.JRadioButton();
         femaleRadio = new javax.swing.JRadioButton();
         balanceTextBox = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        addClientBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,10 +103,21 @@ public class CreateClient extends javax.swing.JFrame {
         genderGroup.add(femaleRadio);
         femaleRadio.setText("Female");
 
-        jButton1.setText("Save");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addClientBtn.setBackground(new java.awt.Color(204, 255, 204));
+        addClientBtn.setForeground(new java.awt.Color(0, 153, 0));
+        addClientBtn.setText("Save");
+        addClientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Save(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(255, 204, 204));
+        jButton2.setForeground(new java.awt.Color(255, 51, 0));
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cancel(evt);
             }
         });
 
@@ -108,14 +128,6 @@ public class CreateClient extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel)
-                            .addComponent(jLabel3))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(phoneTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
@@ -129,23 +141,35 @@ public class CreateClient extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(balanceTextBox)
                                 .addGap(77, 77, 77))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dayTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(monthTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jButton2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(addClientBtn))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(yearTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameLabel)
+                                    .addComponent(jLabel3))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(phoneTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dayTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(monthTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(yearTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +202,9 @@ public class CreateClient extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(balanceTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addClientBtn)
+                    .addComponent(jButton2))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -194,6 +220,12 @@ public class CreateClient extends javax.swing.JFrame {
     }//GEN-LAST:event_yearTextBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    private void Save(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Save
+
        String name = nameTextBox.getText().trim();
        double balance = Double.parseDouble(balanceTextBox.getText().trim());
        Date birthDate = new Date(Integer.parseInt(yearTextBox.getText().trim()), Integer.parseInt(monthTextBox.getText().trim()), Integer.parseInt(dayTextBox.getText().trim()));
@@ -217,7 +249,11 @@ public class CreateClient extends javax.swing.JFrame {
         mw.setLocation(parent.getLocation());
         parent.dispose();
         mw.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_Save
+
+    private void Cancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel
+       this.dispose();
+    }//GEN-LAST:event_Cancel
 
     /**
      * @param args the command line arguments
@@ -256,11 +292,13 @@ public class CreateClient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addClientBtn;
     private javax.swing.JTextField balanceTextBox;
     private javax.swing.JTextField dayTextBox;
     private javax.swing.JRadioButton femaleRadio;
     private javax.swing.ButtonGroup genderGroup;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
