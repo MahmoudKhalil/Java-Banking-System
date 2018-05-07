@@ -5,23 +5,27 @@
  */
 package banking;
 
-import static banking.Deposit.clients;
+import static banking.MainWindow.clients;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author ASUS
  */
-public class Withdraw extends javax.swing.JFrame {
+public class Transfer extends javax.swing.JFrame {
 
     /**
-     * Creates new form Withdraw
+     * Creates new form Transfer
      */
-     public static ArrayList <Client> clients;
+    public static ArrayList <Client> clients;
     public java.awt.Frame parent;
     public int selectedIndex;
-    public Withdraw(java.awt.Frame parent, ArrayList clients, int selectedIndex) {
-      
+    
+    
+    public Transfer(java.awt.Frame parent, ArrayList clients, int selectedIndex) {
+        if(clients.size()>0)
+       //transfereeComboBox.setModel(new DefaultComboBoxModel(clients.toArray()));
         this.parent = parent;
         this.clients = clients;
         this.selectedIndex =selectedIndex;
@@ -40,14 +44,16 @@ public class Withdraw extends javax.swing.JFrame {
 
         Withdraw = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        transferAmountTxt = new javax.swing.JTextField();
         amountLabel = new javax.swing.JLabel();
-        withdrawAmountTxt = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        transfereeComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Withdraw.setBackground(new java.awt.Color(204, 255, 204));
         Withdraw.setForeground(new java.awt.Color(0, 204, 51));
-        Withdraw.setText("Withdraw");
+        Withdraw.setText("Transfer");
         Withdraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 WithdrawActionPerformed(evt);
@@ -65,47 +71,64 @@ public class Withdraw extends javax.swing.JFrame {
 
         amountLabel.setText("Amount");
 
+        jLabel1.setText("Transfer To");
+
+        transfereeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(amountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(amountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Withdraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(withdrawAmountTxt))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addComponent(transferAmountTxt)
+                    .addComponent(transfereeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(withdrawAmountTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(amountLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(transfereeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(Withdraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(amountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(transferAmountTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Withdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawActionPerformed
-      clients.get(selectedIndex).balance -= Integer.parseInt(withdrawAmountTxt.getText().trim());
-       
-      Banking.EndSecondaryFrame(parent,this,selectedIndex);
-       
+       int transferAmount = Integer.parseInt(transferAmountTxt.getText().trim());
+        clients.get(selectedIndex).balance -= transferAmount;
+        clients.get(transfereeComboBox.getSelectedIndex()).balance += transferAmount;
+        
+
+        Banking.EndSecondaryFrame(parent,this,selectedIndex);
     }//GEN-LAST:event_WithdrawActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
- this.dispose();        // TODO add your handling code here:
+        this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     /**
@@ -125,20 +148,20 @@ public class Withdraw extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Transfer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Transfer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Transfer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Transfer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-             
+                
             }
         });
     }
@@ -147,6 +170,8 @@ public class Withdraw extends javax.swing.JFrame {
     private javax.swing.JButton Withdraw;
     private javax.swing.JLabel amountLabel;
     private javax.swing.JButton cancelButton;
-    private javax.swing.JTextField withdrawAmountTxt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField transferAmountTxt;
+    private javax.swing.JComboBox<String> transfereeComboBox;
     // End of variables declaration//GEN-END:variables
 }

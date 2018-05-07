@@ -19,4 +19,14 @@ public class Banking {
         main.setVisible(true);
     }
     
+    public static void EndSecondaryFrame(java.awt.Frame parent,java.awt.Frame child,int selectedIndex){
+        child.dispose();
+        MainWindow mw = new MainWindow(selectedIndex);
+        mw.setLocation(parent.getLocation());
+        parent.dispose();
+        mw.setVisible(true);
+        
+      
+    }
+    
 }

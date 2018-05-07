@@ -99,13 +99,9 @@ public class Deposit extends javax.swing.JFrame {
 
     private void Deposit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Deposit
        clients.get(selectedIndex).balance += Integer.parseInt(depositAmountTxt.getText().trim());
+         Banking.EndSecondaryFrame(parent,this,selectedIndex);
        
-       this.dispose();
-        parent.dispose();
-        MainWindow mw = new MainWindow(selectedIndex);
-        mw.setLocation(parent.getLocation());
-        parent.dispose();
-        mw.setVisible(true);
+      
     }//GEN-LAST:event_Deposit
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
