@@ -24,12 +24,14 @@ public class Transfer extends javax.swing.JFrame {
     
     
     public Transfer(java.awt.Frame parent, ArrayList clients, int selectedIndex) {
-        if(clients.size()>0)
-       //transfereeComboBox.setModel(new DefaultComboBoxModel(clients.toArray()));
+     
+      initComponents();
         this.parent = parent;
         this.clients = clients;
         this.selectedIndex =selectedIndex;
-        initComponents();
+        
+           transfereeComboBox.setModel(new DefaultComboBoxModel(clients.toArray()));
+      
         
     }
 
@@ -56,7 +58,7 @@ public class Transfer extends javax.swing.JFrame {
         Withdraw.setText("Transfer");
         Withdraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WithdrawActionPerformed(evt);
+                TransferActionPerformed(evt);
             }
         });
 
@@ -73,7 +75,17 @@ public class Transfer extends javax.swing.JFrame {
 
         jLabel1.setText("Transfer To");
 
-        transfereeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        transfereeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client 1", "Client 2", "Client 3", "Client 4" }));
+        transfereeComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                transfereeComboBoxItemStateChanged(evt);
+            }
+        });
+        transfereeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transfereeComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,19 +95,18 @@ public class Transfer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(amountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)))
+                            .addComponent(amountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Withdraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(transferAmountTxt)
                     .addComponent(transfereeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,18 +129,30 @@ public class Transfer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawActionPerformed
-       int transferAmount = Integer.parseInt(transferAmountTxt.getText().trim());
+    private void TransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferActionPerformed
+    
+        int transferAmount = Integer.parseInt(transferAmountTxt.getText().trim());
         clients.get(selectedIndex).balance -= transferAmount;
         clients.get(transfereeComboBox.getSelectedIndex()).balance += transferAmount;
         
 
         Banking.EndSecondaryFrame(parent,this,selectedIndex);
-    }//GEN-LAST:event_WithdrawActionPerformed
+    }//GEN-LAST:event_TransferActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void transfereeComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_transfereeComboBoxItemStateChanged
+        // TODO add your handling code here:
+       // clientInfoTxt.setText(((Client)evt.getItem()).Print());
+       
+
+    }//GEN-LAST:event_transfereeComboBoxItemStateChanged
+
+    private void transfereeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transfereeComboBoxActionPerformed
+
+    }//GEN-LAST:event_transfereeComboBoxActionPerformed
 
     /**
      * @param args the command line arguments

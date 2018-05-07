@@ -150,11 +150,6 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clientsChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsChoiceActionPerformed
-        
-      
-    }//GEN-LAST:event_clientsChoiceActionPerformed
-
     private void clientsChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_clientsChoiceItemStateChanged
         // TODO add your handling code here:
         clientInfoTxt.setText(((Client)evt.getItem()).Print());
@@ -190,7 +185,13 @@ public class MainWindow extends javax.swing.JFrame {
        
         t.setVisible(true);
     }//GEN-LAST:event_transferToBtnActionPerformed
+
+    private void clientsChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsChoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientsChoiceActionPerformed
    
+    public static void oppaa(){
+    };
     /**
      * @param args the command line arguments
      */
