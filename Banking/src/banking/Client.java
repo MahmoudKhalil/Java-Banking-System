@@ -5,23 +5,21 @@
  */
 package banking;
 
-import java.util.Date;
-
 /**
  *
  * @author ASUS
  */
 public class Client {
     
-    String username;
+    String name;
     double balance;
     Date dateOfBirth;
     String phoneNumber;
     String gender;
     
-    public Client(String username, double balance, Date dateOfBirth, String phoneNumber, String gender)
+    public Client(String name, double balance, Date dateOfBirth, String phoneNumber, String gender)
     {
-        this.username= username;
+        this.name= name;
         this.balance = balance;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
@@ -29,4 +27,12 @@ public class Client {
        
     }
     
+    @Override
+    public String toString(){
+        return this.name;
+    }
+    
+    public String Print(){
+        return (this.name+"/n"+this.balance+"/n"+this.dateOfBirth+"/n"+this.phoneNumber+"/n" + this.gender +"/n");
+    }
 }

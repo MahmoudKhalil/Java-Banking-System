@@ -5,17 +5,27 @@
  */
 package banking;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author mahmoud
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainWindow
-     */
+    public static ArrayList <Client> clients = new ArrayList <Client>();
+    
+    
     public MainWindow() {
         initComponents();
+       
+        clientsChoice.setModel(new DefaultComboBoxModel(clients.toArray()));
+        if(clientsChoice.getSelectedItem()!=null)
+        clientInfoTxt.setText(clientsChoice.getSelectedItem().Print());
+       
+   
     }
 
     /**
@@ -58,6 +68,11 @@ public class MainWindow extends javax.swing.JFrame {
         transferToBtn.setText("Transfer to");
 
         addClientBtn.setText("Add Client");
+        addClientBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addClientBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,14 +114,23 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clientsChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsChoiceActionPerformed
-        // TODO add your handling code here:
+        
+      
     }//GEN-LAST:event_clientsChoiceActionPerformed
 
     private void clientsChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_clientsChoiceItemStateChanged
         // TODO add your handling code here:
         clientInfoTxt.setText(evt.getItem().toString());
+        
     }//GEN-LAST:event_clientsChoiceItemStateChanged
 
+    private void addClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClientBtnActionPerformed
+       
+        CreateClient cc = new CreateClient(this,clients);
+        cc.setVisible(true);
+    
+    }//GEN-LAST:event_addClientBtnActionPerformed
+   
     /**
      * @param args the command line arguments
      */
@@ -141,7 +165,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
-
+    
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addClientBtn;
     private javax.swing.JTextPane clientInfoTxt;
@@ -151,4 +176,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton transferToBtn;
     private javax.swing.JButton withdrawBtn;
     // End of variables declaration//GEN-END:variables
+ 
+
 }
