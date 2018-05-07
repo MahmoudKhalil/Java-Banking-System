@@ -45,8 +45,8 @@ public class Withdraw extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Withdraw.setBackground(new java.awt.Color(204, 255, 204));
-        Withdraw.setForeground(new java.awt.Color(0, 204, 51));
+        Withdraw.setBackground(new java.awt.Color(0, 255, 204));
+        Withdraw.setForeground(new java.awt.Color(102, 102, 255));
         Withdraw.setText("Withdraw");
         Withdraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
