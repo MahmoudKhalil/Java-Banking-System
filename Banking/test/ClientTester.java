@@ -6,6 +6,7 @@
 
 import banking.Client;
 import banking.Date;
+import banking.NegativeMoneyException;
 import banking.WithdrawAmountException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -60,12 +61,21 @@ public class ClientTester {
     @Test
     public void depositTest() {
         Client c = new Client("Mahmoud", 200.0, new Date(17, 8, 1997), "0000", "male");
-        c.deposit(50);
         
-        assertEquals(250.0, c.getBalance(), 0.0001);
+        try {
+            c.deposit(50);
+
+            assertEquals(250.0, c.getBalance(), 0.0001);
+        } catch(NegativeMoneyException ex) {
+            fail("Exception shouldn't be thrown");
+        }
         
-        c.deposit(-10);
-        assertEquals(250.0, c.getBalance(), 0.0001);
+        try {
+            c.deposit(-10);
+            fail("Method should throw NegativeMoneyException");
+        } catch(NegativeMoneyException ex) {
+            assertEquals(250.0, c.getBalance(), 0.0001);
+        }
     }
     
     @Test
@@ -77,13 +87,17 @@ public class ClientTester {
             assertEquals(185, c.getBalance(), 0.0001);
         } catch(WithdrawAmountException ex) {
             fail("Function shouldn't throw an exception in this case");
+        } catch(NegativeMoneyException ex) {
+            fail("Method shouldn't throw NegativeMoneyException");
         }
         
         try {
             c.withdraw(300);
             fail("Function shouldn't complete the try clause");
         } catch(WithdrawAmountException ex) {
-            assertTrue(true);
+            assertEquals(185, c.getBalance(), 0.0001);
+        } catch(NegativeMoneyException ex) {
+            assertEquals(185, c.getBalance(), 0.0001);
         }
         
     }
@@ -97,7 +111,11 @@ public class ClientTester {
             Client.transferTo(c1, c2, 300);
             fail("Method should fail since that the amount to be withdrawn is more than the balance");
         } catch(WithdrawAmountException ex) {
-            assertTrue(true);
+            assertEquals(200.0, c1.getBalance(), 0.0001);
+            assertEquals(200.0, c2.getBalance(), 0.0001);
+        } catch(NegativeMoneyException ex) {
+            assertEquals(200.0, c1.getBalance(), 0.0001);
+            assertEquals(200.0, c2.getBalance(), 0.0001);
         }
         
         try{
@@ -106,18 +124,26 @@ public class ClientTester {
             assertEquals(230, c2.getBalance(), 0.0001);
         } catch(WithdrawAmountException ex) {
             fail("Function shouldn't throw an exception");
+        } catch(NegativeMoneyException ex) {
+            fail("Method shouldn't throw an exception");
         }
     }
     
     @Test
     public void depositWithdrawTest() {
         Client c = new Client("Mahmoud", 200.0, new Date(17, 8, 1997), "0000", "male");
-        c.deposit(100);
-        c.deposit(50);
+        try {
+            c.deposit(100);
+            c.deposit(50);
+        } catch(NegativeMoneyException ex) {
+            
+        }
         
         try{
             c.withdraw(200);
         } catch(WithdrawAmountException ex) {
+            fail("Shouldn't throw an exception");
+        } catch(NegativeMoneyException ex) {
             fail("Shouldn't throw an exception");
         }
         

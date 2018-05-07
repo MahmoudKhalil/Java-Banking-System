@@ -58,23 +58,27 @@ public class Client {
                 
     }
     
-    public void deposit(double amount) {
-        if(amount > 0) {
-            balance += amount;
+    public void deposit(double amount) throws NegativeMoneyException {
+        if(amount < 0) {
+            throw new NegativeMoneyException();
         }
+        
+        balance += amount;
     }
     
-    public void withdraw(double amount) throws WithdrawAmountException{
-        if(amount > 0) {
-            if(amount > balance) {
-                throw new WithdrawAmountException();
-            }
-            
-            balance -= amount;
+    public void withdraw(double amount) throws WithdrawAmountException, NegativeMoneyException {
+        if(amount < 0) {
+            throw new NegativeMoneyException();
         }
+        
+        if(amount > balance) {
+            throw new WithdrawAmountException();
+        }
+
+        balance -= amount;
     }
     
-    public static void transferTo(Client client1, Client client2, double amount) throws WithdrawAmountException{
+    public static void transferTo(Client client1, Client client2, double amount) throws WithdrawAmountException, NegativeMoneyException {
         client1.withdraw(amount);
         client2.deposit(amount);
     }
