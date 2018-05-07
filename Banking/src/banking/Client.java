@@ -5,11 +5,18 @@
  */
 package banking;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 /**
  *
  * @author ASUS
  */
-public class Client {
+public class Client implements Serializable{
     
     String name;
     double balance;
@@ -81,5 +88,23 @@ public class Client {
     public static void transferTo(Client client1, Client client2, double amount) throws WithdrawAmountException, NegativeMoneyException {
         client1.withdraw(amount);
         client2.deposit(amount);
+    }
+    
+    public void save(FileOutputStream fos, ObjectOutputStream oos) throws IOException {
+        oos.writeObject(name);
+        oos.writeDouble(balance);
+        oos.writeObject(dateOfBirth);
+        oos.writeObject(phoneNumber);
+        oos.writeObject(gender);
+    }
+    
+    public static Client load(FileInputStream fis, ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        String clientName = (String)ois.readObject();
+        double clientBalance = ois.readDouble();
+        Date clientDate = (Date)ois.readObject();
+        String clientPhoneNumber = (String)ois.readObject();
+        String clientGender = (String) ois.readObject();
+        
+        return new Client(clientName, clientBalance, null, clientPhoneNumber, clientGender);
     }
 }

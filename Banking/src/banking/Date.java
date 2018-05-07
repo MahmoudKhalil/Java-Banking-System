@@ -5,11 +5,13 @@
  */
 package banking;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ASUS
  */
-public class Date {
+public class Date implements Serializable {
     int day,month,year;
     public Date(int day, int month, int year)
     {
