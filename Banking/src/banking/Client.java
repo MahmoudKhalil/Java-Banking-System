@@ -37,4 +37,17 @@ public class Client {
                 
                 
     }
+    
+    public void deposit(double amount) {
+        balance += amount;
+    }
+    
+    public void withdraw(double amount) {
+        balance -= amount;
+    }
+    
+    public void transferTo(double amount, Client anotherClient) {
+        this.withdraw(amount);
+        anotherClient.deposit(amount);
+    }
 }
