@@ -27,6 +27,26 @@ public class Client {
        
     }
     
+    public String getName() {
+        return name;
+    }
+    
+    public double getBalance() {
+        return balance;
+    }
+    
+    public Date getDate() {
+        return dateOfBirth;
+    }
+    
+    public String getNumber() {
+        return phoneNumber;
+    }
+    
+    public String getGender() {
+        return gender;
+    }
+    
     @Override
     public String toString(){
         return this.name;
@@ -39,14 +59,22 @@ public class Client {
     }
     
     public void deposit(double amount) {
-        balance += amount;
+        if(amount > 0) {
+            balance += amount;
+        }
     }
     
-    public void withdraw(double amount) {
-        balance -= amount;
+    public void withdraw(double amount) throws WithdrawAmountException{
+        if(amount > 0) {
+            if(amount > balance) {
+                throw new WithdrawAmountException();
+            }
+            
+            balance -= amount;
+        }
     }
     
-    public void transferTo(double amount, Client anotherClient) {
+    public void transferTo(double amount, Client anotherClient) throws WithdrawAmountException{
         this.withdraw(amount);
         anotherClient.deposit(amount);
     }
