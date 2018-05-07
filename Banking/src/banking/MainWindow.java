@@ -18,15 +18,23 @@ public class MainWindow extends javax.swing.JFrame {
     public static ArrayList <Client> clients = new ArrayList <Client>();
     
     
-    public MainWindow() {
+    public MainWindow(int selectedIndex) {
+        
         initComponents();
        
+        if(clients.size()==0){
+        Client TestClient = new Client ("Kholio Beeh Bsheeewww",1500,new Date(20,7,1997),"01113848320","Male");
+        clients.add(TestClient);
+        }
         clientsChoice.setModel(new DefaultComboBoxModel(clients.toArray()));
-        if(clientsChoice.getSelectedItem()!=null)
+        clientsChoice.setSelectedItem(clients.get(selectedIndex));
         clientInfoTxt.setText( ((Client)clientsChoice.getSelectedItem()).Print());
+        }
+    
+    
        
-   
-    }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,13 +155,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void clientsChoiceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_clientsChoiceItemStateChanged
         // TODO add your handling code here:
-        clientInfoTxt.setText(evt.getItem().toString());
+        clientInfoTxt.setText(((Client)evt.getItem()).Print());
         
     }//GEN-LAST:event_clientsChoiceItemStateChanged
 
     private void addClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClientBtnActionPerformed
 
-        CreateClient cc = new CreateClient(this,clients);
+        CreateClient cc = new CreateClient(this,clients,clientsChoice.getSelectedIndex());
         cc.setLocation(this.getLocation().x+this.getWidth(),this.getLocation().y);
        
         cc.setVisible(true);
@@ -204,7 +212,7 @@ public class MainWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainWindow().setVisible(true);
+              
             }
         });
     }

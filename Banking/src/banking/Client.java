@@ -33,7 +33,7 @@ public class Client {
     }
     
     public String Print(){
-        return ("Name: "+this.name+"\n"+ "Balance: "+this.balance+"\n"+ "Date Of Birth: "+ this.dateOfBirth+"\n"+ "Phone Number: "+ this.phoneNumber+"\n" + "Gender " +this.gender +"\n");
+        return ("Name: "+this.name+"\n"+ "Balance: "+this.balance+"\n"+ "Date Of Birth: "+ this.dateOfBirth+"\n"+ "Phone Number: "+ this.phoneNumber+"\n" + "Gender: " +this.gender +"\n");
                 
                 
     }

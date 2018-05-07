@@ -22,10 +22,12 @@ public class CreateClient extends javax.swing.JFrame {
     
     public static ArrayList <Client> clients;
     public java.awt.Frame parent;
-    public CreateClient(java.awt.Frame parent, ArrayList clients) {
+    public int selectedIndex;
+    public CreateClient(java.awt.Frame parent, ArrayList clients, int selectedIndex) {
       
         this.parent = parent;
         this.clients = clients;
+        this.selectedIndex=selectedIndex;
         initComponents();
         
     }
@@ -245,7 +247,7 @@ public class CreateClient extends javax.swing.JFrame {
         
         this.dispose();
         parent.dispose();
-        MainWindow mw = new MainWindow();
+        MainWindow mw = new MainWindow(selectedIndex);
         mw.setLocation(parent.getLocation());
         parent.dispose();
         mw.setVisible(true);
