@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.sikuli.script.Screen;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 
 import static org.sikuli.script.ImagePath.find;
 import org.sikuli.script.Key;
@@ -21,6 +22,7 @@ import org.sikuli.script.Region.*;
  * @author Dead Lock
  */
 public class GuiTest {
+    public static Screen s;
             String[] user = {"Mahmoud Ahmed khalil", "Mohamed Mostafa Amin","Aly Mohamed Aly","Yasin Ahmed Yasser","Wael Mohamed Ibrahim"};
            String[] telephone = {"01118402892","01114212319", "01115839284","01278429503","01039458602"};
            int[] day = {5,3,2,20,17};
@@ -30,14 +32,17 @@ public class GuiTest {
     public void GUIThread() {
 
     }
-
-    @Test   
-    public void testGUI() {
-        try {
-
-            Screen s = new Screen();
+@BeforeClass
+public static void setUpClass() {
+             s = new Screen();
             MainWindow w = new MainWindow(0);
             w.setVisible(true);
+}
+    @Test   
+    public void testClientAdding() {
+        try {
+
+          
            
             popup("Beginning testing",2);
             popup("Let's attempt to add 5 users first",2);
@@ -49,28 +54,14 @@ public class GuiTest {
                 s.type(Key.TAB + balances[i]);
              
                 s.click("screenshots/savebutton.PNG");
+                  Assert.assertNotNull("Adding User Not successful", s.exists("screenshots/addingUserSuccessful.png"));
+                  s.click("screenshots/ok.png");
                 popup(5-(i+1)+" left",1);
             }
             
             
-            /**Withdraw**
-             ***********/
-             popup("Testing Withdraw",2);
-            s.click("screenshots/withdrawmain.png");
-            Thread.sleep(2000);
-            
-            s.type("3000");
-            s.click("screenshots/withdraw2.png");
-            
-              /**Deposit**
-             ***********/
-             popup("Testing Deposit",2);
-        
            
-            s.click("screenshots/depositmain.png");
-            
-            s.type("2000"); 
-            s.click("screenshots/deposit2.png");
+          
  
            
                     
@@ -78,5 +69,82 @@ public class GuiTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        
+    }
+    
+    
+    
+    @Test 
+    public void testWithdraw()
+    {
+          try {
+             popup("Testing Withdraw",2);
+            s.click("screenshots/withdrawmain.png");
+            Thread.sleep(1000);
+            
+            s.type("3000");
+            s.click("screenshots/withdraw2.png");
+             Assert.assertNotNull("Withdraw not successful", s.exists("screenshots/withdrawSuccessful.png"));
+                  s.click("screenshots/ok.png");
+          }
+          catch(Exception e)
+          {
+              e.printStackTrace();
+          }
+            
+             
+        
+    }
+    
+    @Test 
+    public void testDeposit()
+    {
+          try {
+                popup("Testing Deposit",2);
+        
+           
+            s.click("screenshots/depositmain.png");
+            
+            s.type("2000"); 
+            s.click("screenshots/deposit2.png");
+            
+            Assert.assertNotNull("Deposit not successful", s.exists("screenshots/depositMessageSuccessful.png"));
+            s.click("screenshots/ok.png");
+          }
+          catch(Exception e)
+          {
+              e.printStackTrace();
+          }
+            
+             
+        
+    }
+    
+    @Test 
+    public void testTransfer()
+    {
+          try {
+                popup("Testing Transfer",2);
+        
+           
+            s.click("screenshots/transfer.png");
+            
+            s.click("screenshots/dropbox2.png");
+            s.type("Mohamed");  
+            s.type(Key.TAB);
+            
+            s.type("2000"); 
+            s.click("screenshots/transfer2.png");
+            
+            Assert.assertNotNull("Transfer not successful", s.exists("screenshots/transferMessageSuccessful.png"));
+            s.click("screenshots/ok.png");
+          }
+          catch(Exception e)
+          {
+              e.printStackTrace();
+          }
+            
+        
     }
 }

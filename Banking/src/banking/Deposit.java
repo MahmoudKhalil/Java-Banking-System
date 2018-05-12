@@ -6,6 +6,7 @@
 package banking;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,8 +46,8 @@ public class Deposit extends javax.swing.JFrame {
 
         jLabel1.setText("Amount");
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 204));
-        jButton1.setForeground(new java.awt.Color(0, 204, 51));
+        jButton1.setBackground(new java.awt.Color(102, 255, 204));
+        jButton1.setForeground(new java.awt.Color(0, 0, 204));
         jButton1.setText("Deposit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +101,7 @@ public class Deposit extends javax.swing.JFrame {
     private void Deposit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Deposit
        clients.get(selectedIndex).balance += Integer.parseInt(depositAmountTxt.getText().trim());
          Banking.EndSecondaryFrame(parent,this,selectedIndex);
+         JOptionPane.showMessageDialog(null, "Deposit Successful");
        
       
     }//GEN-LAST:event_Deposit

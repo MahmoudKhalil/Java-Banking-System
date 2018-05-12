@@ -8,6 +8,7 @@ package banking;
 import static banking.MainWindow.clients;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -245,12 +246,9 @@ public class CreateClient extends javax.swing.JFrame {
    
       
         
-        this.dispose();
-        parent.dispose();
-        MainWindow mw = new MainWindow(selectedIndex);
-        mw.setLocation(parent.getLocation());
-        parent.dispose();
-        mw.setVisible(true);
+         Banking.EndSecondaryFrame(parent,this,selectedIndex);
+        
+        JOptionPane.showMessageDialog(null, "Adding User Successful");
     }//GEN-LAST:event_Save
 
     private void Cancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancel

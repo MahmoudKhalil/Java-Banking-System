@@ -8,6 +8,7 @@ package banking;
 import static banking.MainWindow.clients;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -140,6 +141,7 @@ public class Transfer extends javax.swing.JFrame {
         
 
         Banking.EndSecondaryFrame(parent,this,selectedIndex);
+        JOptionPane.showMessageDialog(null,"Transfer Successful");
     }//GEN-LAST:event_TransferActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

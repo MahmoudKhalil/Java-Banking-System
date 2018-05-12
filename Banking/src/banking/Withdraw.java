@@ -7,6 +7,7 @@ package banking;
 
 import static banking.Deposit.clients;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -101,6 +102,7 @@ public class Withdraw extends javax.swing.JFrame {
       clients.get(selectedIndex).balance -= Integer.parseInt(withdrawAmountTxt.getText().trim());
        
       Banking.EndSecondaryFrame(parent,this,selectedIndex);
+      JOptionPane.showMessageDialog(null, "Withdraw Successful");
        
     }//GEN-LAST:event_WithdrawActionPerformed
 
