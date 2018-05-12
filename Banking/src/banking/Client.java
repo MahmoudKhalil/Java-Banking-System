@@ -85,9 +85,17 @@ public class Client implements Serializable{
         balance -= amount;
     }
     
-    public static void transferTo(Client client1, Client client2, double amount) throws WithdrawAmountException, NegativeMoneyException {
-        client1.withdraw(amount);
-        client2.deposit(amount);
+    public void transferTo(Client client2, double amount) throws NegativeMoneyException, WithdrawAmountException {
+        if(amount < 0) {
+            throw new NegativeMoneyException();
+        }
+        
+        if(amount > this.balance) {
+            throw new WithdrawAmountException();
+        }
+        
+        this.balance -= amount;
+        client2.balance += amount;
     }
     
     public void save(FileOutputStream fos, ObjectOutputStream oos) throws IOException {
@@ -105,6 +113,6 @@ public class Client implements Serializable{
         String clientPhoneNumber = (String)ois.readObject();
         String clientGender = (String) ois.readObject();
         
-        return new Client(clientName, clientBalance, null, clientPhoneNumber, clientGender);
+        return new Client(clientName, clientBalance, clientDate, clientPhoneNumber, clientGender);
     }
 }
