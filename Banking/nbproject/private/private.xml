@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/mahmoud/Documents/Documents/College/Software%20Testing,%20Validation,%20and%20Verfication/Java-Banking-System/Banking/src/banking/MainWindow.java</file>
-            <file>file:/home/mahmoud/Documents/Documents/College/Software%20Testing,%20Validation,%20and%20Verfication/Java-Banking-System/Banking/src/banking/Client.java</file>
-            <file>file:/home/mahmoud/Documents/Documents/College/Software%20Testing,%20Validation,%20and%20Verfication/Java-Banking-System/Banking/src/banking/Date.java</file>
-            <file>file:/home/mahmoud/Documents/Documents/College/Software%20Testing,%20Validation,%20and%20Verfication/Java-Banking-System/Banking/src/banking/CreateClient.java</file>
-            <file>file:/home/mahmoud/Documents/Documents/College/Software%20Testing,%20Validation,%20and%20Verfication/Java-Banking-System/Banking/test/ClientTester.java</file>
-            <file>file:/home/mahmoud/Documents/Documents/College/Software%20Testing,%20Validation,%20and%20Verfication/Java-Banking-System/Banking/src/banking/Banking.java</file>
-            <file>file:/home/mahmoud/Documents/Documents/College/Software%20Testing,%20Validation,%20and%20Verfication/Java-Banking-System/Banking/src/banking/NegativeMoneyException.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/Deposit.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/Client.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/Banking.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/Withdraw.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/test/ClientTester.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/test/GuiTest.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/Transfer.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/WithdrawAmountException.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/MainWindow.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/Date.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/Java-Banking-System/Banking/src/banking/CreateClient.java</file>
         </group>
     </open-files>
 </project-private>
