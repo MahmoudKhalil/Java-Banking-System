@@ -6,6 +6,9 @@
 package banking;
 
 import static banking.MainWindow.clients;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 
@@ -243,7 +246,20 @@ public class CreateClient extends javax.swing.JFrame {
         Client newClient = new Client(name,balance,birthDate,phoneNumber,gender);
         clients.add(newClient);
    
-      
+        System.out.println("here svae");
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = new FileOutputStream("Accounts.data", false);
+            oos = new ObjectOutputStream(fos);
+            oos.writeInt(clients.size());
+            for(int i = 0; i < clients.size(); i++) {
+                clients.get(i).save(fos, oos);
+            }
+            System.out.println("saved");
+        } catch(IOException ex) {
+            System.out.println("Save beshew");
+        }
         
         this.dispose();
         parent.dispose();

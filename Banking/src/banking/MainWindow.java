@@ -26,6 +26,33 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow(int selectedIndex) {
         
         initComponents();
+        
+        System.out.println("here");
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try {
+            fis = new FileInputStream("Accounts.data");
+            ois = new ObjectInputStream(fis);
+            int size = ois.readInt();
+            ArrayList <Client> clients2 = new ArrayList <Client>();
+            for(int i = 0; i < size; i++) {
+                System.out.println("hentayeb");
+                clients2.add(Client.load(fis, ois));
+            }
+            System.out.println("hena ba2");
+            clients = clients2;
+            System.out.println(clients.size());
+            for(int i = 0; i < clients.size(); i++) {
+                
+                System.out.println(clients.get(i).getName());
+            }
+        } catch(IOException ex) {
+            System.out.println("hena1");
+            ex.printStackTrace();
+        } catch(ClassNotFoundException ex) {
+            System.out.println("hen2");
+            ex.printStackTrace();
+        }
        
         if(clients.size()==0){
         Client TestClient = new Client ("Kholio Beeh Bsheeewww",1500,new Date(20,7,1997),"01113848320","Male");
