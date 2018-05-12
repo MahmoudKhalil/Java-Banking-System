@@ -23,14 +23,16 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
        
         if(clients.size()==0){
-        Client TestClient = new Client ("Kholio Beeh Bsheeewww",1500,new Date(20,7,1997),"01113848320","Male");
-        clients.add(TestClient);
+       // Client TestClient = new Client ("Kholio Beeh Bsheeewww",1500,new Date(20,7,1997),"01113848320","Male");
+       // clients.add(TestClient);
         }
+        else
+        {
         clientsChoice.setModel(new DefaultComboBoxModel(clients.toArray()));
         clientsChoice.setSelectedItem(clients.get(selectedIndex));
         clientInfoTxt.setText( ((Client)clientsChoice.getSelectedItem()).Print());
         }
-    
+    }
     
        
 
@@ -59,7 +61,6 @@ public class MainWindow extends javax.swing.JFrame {
         clientInfoTxt.setFont(new java.awt.Font("DialogInput", 0, 18)); // NOI18N
         jScrollPane1.setViewportView(clientInfoTxt);
 
-        clientsChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Client 1", "Client 2", "Client 3", "Client 4" }));
         clientsChoice.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 clientsChoiceItemStateChanged(evt);

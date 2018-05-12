@@ -94,12 +94,7 @@
     <Component class="javax.swing.JComboBox" name="clientsChoice">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Client 1"/>
-            <StringItem index="1" value="Client 2"/>
-            <StringItem index="2" value="Client 3"/>
-            <StringItem index="3" value="Client 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>

@@ -246,7 +246,7 @@ public class CreateClient extends javax.swing.JFrame {
    
       
         
-         Banking.EndSecondaryFrame(parent,this,selectedIndex);
+         Banking.EndSecondaryFrame(parent,this,selectedIndex+1);
         
         JOptionPane.showMessageDialog(null, "Adding User Successful");
     }//GEN-LAST:event_Save
