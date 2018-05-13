@@ -6,6 +6,9 @@
 package banking;
 
 import static banking.MainWindow.clients;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -244,7 +247,7 @@ public class CreateClient extends javax.swing.JFrame {
         Client newClient = new Client(name,balance,birthDate,phoneNumber,gender);
         clients.add(newClient);
    
-      
+       
         
          Banking.EndSecondaryFrame(parent,this,selectedIndex+1);
         

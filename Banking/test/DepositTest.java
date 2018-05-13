@@ -76,9 +76,6 @@ public class DepositTest {
             oldBalance = c.getBalance();
             c.deposit(Math.pow(2, 5));
             assertEquals(Math.pow(2, 5) + oldBalance, c.getBalance(), 0.0001);
-            oldBalance = c.getBalance();
-            c.deposit(Math.pow(2, 10));
-            assertEquals(Math.pow(2, 10) + oldBalance, c.getBalance(), 0.00001);
         } catch(NegativeMoneyException ex) {
             fail("Deposit shouldn't throw an exception");
         }

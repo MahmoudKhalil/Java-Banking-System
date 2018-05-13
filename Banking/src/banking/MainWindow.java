@@ -5,9 +5,15 @@
  */
 package banking;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,10 +23,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     public static ArrayList <Client> clients = new ArrayList <Client>();
     
-    
+    int selectedIndex;
     public MainWindow(int selectedIndex) {
-        
+        this.selectedIndex=selectedIndex;
         initComponents();
+        
+      
+    
        
         if(clients.size()==0){
        // Client TestClient = new Client ("Kholio Beeh Bsheeewww",1500,new Date(20,7,1997),"01113848320","Male");
@@ -54,6 +63,10 @@ public class MainWindow extends javax.swing.JFrame {
         withdrawBtn = new javax.swing.JButton();
         transferToBtn = new javax.swing.JButton();
         addClientBtn = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +120,28 @@ public class MainWindow extends javax.swing.JFrame {
                 addClientBtnActionPerformed(evt);
             }
         });
+
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("save");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("load");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -190,6 +225,63 @@ public class MainWindow extends javax.swing.JFrame {
     private void clientsChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsChoiceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_clientsChoiceActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = new FileOutputStream("Accounts.data", false);
+            oos = new ObjectOutputStream(fos);
+            oos.writeInt(clients.size());
+            for(int i = 0; i < clients.size(); i++) {
+                clients.get(i).save(fos, oos);
+            }
+            System.out.println("saved");
+        } catch(IOException ex) {
+            System.out.println("Save beshew");
+        }
+        
+        JOptionPane.showMessageDialog(null, "Saved Users");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("here");
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try {
+            fis = new FileInputStream("Accounts.data");
+            ois = new ObjectInputStream(fis);
+            int size = ois.readInt();
+            ArrayList <Client> clients2 = new ArrayList <Client>();
+            for(int i = 0; i < size; i++) {
+             
+                clients2.add(Client.load(fis, ois));
+            }
+     
+            clients = clients2;
+            System.out.println(clients.size());
+            for(int i = 0; i < clients.size(); i++) {
+                
+                System.out.println(clients.get(i).getName());
+            }
+        } catch(IOException ex) {
+          
+            ex.printStackTrace();
+        } catch(ClassNotFoundException ex) {
+            System.out.println("hen2");
+            ex.printStackTrace();
+        }
+           JOptionPane.showMessageDialog(null, "loaded Users");
+        MainWindow mw = new MainWindow(selectedIndex);
+        mw.setLocation(this.getLocation());
+           this.dispose();
+        mw.setVisible(true);
+        
+    
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
    
     public static void oppaa(){
     };
@@ -234,6 +326,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextPane clientInfoTxt;
     private javax.swing.JComboBox<String> clientsChoice;
     private javax.swing.JButton depositBtn;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton transferToBtn;
     private javax.swing.JButton withdrawBtn;
