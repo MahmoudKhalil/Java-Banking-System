@@ -6,6 +6,10 @@
 package banking;
 
 import static banking.MainWindow.clients;
+import static banking.Withdraw.clients;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -136,9 +140,28 @@ public class Transfer extends javax.swing.JFrame {
     private void TransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TransferActionPerformed
     
         int transferAmount = Integer.parseInt(transferAmountTxt.getText().trim());
-        clients.get(selectedIndex).balance -= transferAmount;
-        clients.get(transfereeComboBox.getSelectedIndex()).balance += transferAmount;
+        try {
+            clients.get(selectedIndex).transferTo(clients.get(transfereeComboBox.getSelectedIndex()), transferAmount);
+        } catch(NegativeMoneyException ex) {
         
+        } catch(WithdrawAmountException ex) {
+        
+        }
+        
+        System.out.println("here svae");
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = new FileOutputStream("Accounts.data", false);
+            oos = new ObjectOutputStream(fos);
+            oos.writeInt(clients.size());
+            for(int i = 0; i < clients.size(); i++) {
+                clients.get(i).save(fos, oos);
+            }
+            System.out.println("saved");
+        } catch(IOException ex) {
+            System.out.println("Save beshew");
+        }
 
         Banking.EndSecondaryFrame(parent,this,selectedIndex);
         JOptionPane.showMessageDialog(null,"Transfer Successful");

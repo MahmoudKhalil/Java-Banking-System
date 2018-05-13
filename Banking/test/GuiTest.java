@@ -54,10 +54,9 @@ public static void setUpClass() {
     @Test
     public void adding5validClients()
     {
-         try {
-             
+         try {   
             popup("Let's attempt to add 5 users first",2);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 1; i++) {
                 s.click("screenshots/addclientmain.png");
 
                 s.type((user[i]) + Key.TAB + telephone[i] + Key.TAB + day[i]+ Key.TAB + month[i] + Key.TAB + year[i]);
@@ -79,7 +78,7 @@ public static void setUpClass() {
        
     }
     
-    /*@Test
+    //@Test
     public void addingClientWithNegativeBalance()
     {
       
@@ -102,9 +101,9 @@ public static void setUpClass() {
             e.printStackTrace();
         }
     }
-*/
+
     @Test
-    public void adddingClientWithStringBalance()
+    public void addingClientWithStringBalance()
     {
         try{
             popup("Adding client with String Balance",3);
@@ -145,9 +144,7 @@ public static void setUpClass() {
           {
               e.printStackTrace();
           }
-            
-         
-        
+                 
     }
     
     @Test 
@@ -211,7 +208,7 @@ public static void setUpClass() {
         s.click("screenshots/file.png");
         s.click("screenshots/save.png");
         Assert.assertNotNull("Save failed","screenshots/saveSuccessful");
-        Thread.sleep(1000);
+    
         s.click("screenshots/ok.png");
          
         }catch(Exception e)
@@ -228,7 +225,7 @@ public static void setUpClass() {
         s.click("screenshots/file.png");
         s.click("screenshots/load.png");
         Assert.assertNotNull("Load failed","screenshots/loadSuccessful");
-          Thread.sleep(1000);
+     
         s.click("screenshots/ok.png");
           
         }catch(Exception e)
