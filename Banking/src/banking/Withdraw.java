@@ -6,6 +6,9 @@
 package banking;
 
 import static banking.Deposit.clients;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -98,9 +101,30 @@ public class Withdraw extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WithdrawActionPerformed
-      clients.get(selectedIndex).balance -= Integer.parseInt(withdrawAmountTxt.getText().trim());
-       
-      Banking.EndSecondaryFrame(parent,this,selectedIndex);
+        try {
+            clients.get(selectedIndex).withdraw(Integer.parseInt(withdrawAmountTxt.getText().trim()));
+        } catch(NegativeMoneyException ex) {
+        
+        } catch(WithdrawAmountException ex) {
+        
+        }
+        
+        System.out.println("here svae");
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = new FileOutputStream("Accounts.data", false);
+            oos = new ObjectOutputStream(fos);
+            oos.writeInt(clients.size());
+            for(int i = 0; i < clients.size(); i++) {
+                clients.get(i).save(fos, oos);
+            }
+            System.out.println("saved");
+        } catch(IOException ex) {
+            System.out.println("Save beshew");
+        }
+        
+        Banking.EndSecondaryFrame(parent,this,selectedIndex);
        
     }//GEN-LAST:event_WithdrawActionPerformed
 
